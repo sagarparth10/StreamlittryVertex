@@ -85,11 +85,14 @@ def analyze_video(video_url, prompt):
         print("Raw response from Gemini:")
         print(response_text)
 
-        # Remove ```json and ``` if present
-        if response_text.startswith("```json"):
-            response_text = response_text[6:]
-        if response_text.endswith("```"):
-            response_text = response_text[:-3]
+        # **Aggressive Cleaning of the JSON Response**
+        response_text = response_text.replace("```json", "").replace("```", "").strip() # Remove code blocks
+        if response_text.startswith("{"):
+          start_index = response_text.find("{")
+          response_text = response_text[start_index:]
+        if response_text.endswith("}"):
+          end_index = response_text.rfind("}")
+          response_text = response_text[:end_index + 1]
 
         try:
             parsed_data = json.loads(response_text)
