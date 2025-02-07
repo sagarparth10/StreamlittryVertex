@@ -1,0 +1,33 @@
+name: Deploy Streamlit App
+
+on:
+  push:
+    branches:
+      - main  # Or your main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.12.4"
+      - name: Install dependencies
+        run: |
+          pip install streamlit
+          pip install google-cloud-aiplatform  # Or the necessary Vertex AI package
+          pip install google-cloud-storage
+          pip install google-auth
+          pip install pandas
+          pip install requests
+
+      - name: Deploy to Streamlit Community Cloud
+        uses: streamlit/deploy-app@v1
+        with:
+          # api_token: ${{ secrets.STREAMLIT_API_KEY }}  # You'll need a Streamlit API key secret
+          # This is the path to your requirements.txt file
+          requirements_path: requirements.txt
+          # This is the path to your streamlit app
+          main_script_path: streamlit.py #CHANGE ME
