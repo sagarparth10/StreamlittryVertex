@@ -20,13 +20,23 @@ if not video_url:
 PROJECT_ID = "marine-actor-449411-t3"  # Replace with your project ID
 LOCATION = "us-central1"  # Replace with your region
 
-# Service Account Credentials
-credentials_path = './/SVCCredentials//marine-actor-449411-t3-9022d9539783.json'
-
+# **MODIFIED: Access Service Account Credentials from Streamlit Secrets**
 try:
-    credentials = service_account.Credentials.from_service_account_file(credentials_path, scopes=["https://www.googleapis.com/auth/cloud-platform"])
-    vertexai.init(project=PROJECT_ID, location=LOCATION, credentials=credentials) # Use credentials here
+    # 1.  Get the JSON string from Streamlit secrets (environment variable)
+    credentials_json = st.secrets["VERTEX_CREDENTIALS"]  # Replace "VERTEX_CREDENTIALS" with the name of your GitHub secret
+
+    # 2.  Load the JSON string into a dictionary
+    credentials_info = json.loads(credentials_json)
+
+    # 3. Create credentials from the dictionary.
+    credentials = service_account.Credentials.from_service_account_info(credentials_info, scopes=["https://www.googleapis.com/auth/cloud-platform"])
+
+    vertexai.init(project=PROJECT_ID, location=LOCATION, credentials=credentials)  # Use credentials here
     st.success("Successfully authenticated with Vertex AI.")
+
+except Exception as e:
+    st.error(f"Error authenticating with Vertex AI: {e}")  # Print error e
+    st.stop()  # Stop if authentication fails
 except Exception as e:
     st.error(f"Error authenticating with Vertex AI: {e}") # print error e
     st.stop() # Stop if authentication fails
