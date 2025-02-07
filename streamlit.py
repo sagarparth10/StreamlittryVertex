@@ -1,3 +1,4 @@
+
 import streamlit as st
 import requests
 import json
@@ -47,7 +48,7 @@ model = GenerativeModel(model_name)
 generation_config = GenerationConfig(
     temperature=0.7,
     top_p=0.9,
-    max_output_tokens=2048 #Adjust as needed.
+    max_output_tokens=4096 #Adjust as needed.
 )
 
 safety_settings = {
@@ -76,6 +77,11 @@ def analyze_video(video_url, prompt):
         )
 
         response_text = responses.text.strip()  # Get the raw text response
+
+        #Debug print
+        print("Raw response from Gemini:")
+        print(response_text)
+
 
         # Remove ```json and ``` if present
         if response_text.startswith("```json"):
