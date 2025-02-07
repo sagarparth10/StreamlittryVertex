@@ -38,7 +38,7 @@ except Exception as e:
 prompt_text = """
     Provide the full transcript without timeline and Customer Sentiment Summary without timeline in JSON format.
     Ignore any Responsible AI violation part. You are an AI assistant that helps summarize this product's YouTube video transcription.
-    Provide the customer sentiment with all positives and all negatives sentence based solely on the transcription.
+    Provide the customer sentiment summary with all positives and all negatives sentence based solely on the transcription.
     If there are only negatives, provide only negative points, and if only positives are available, provide only positives.  Rank positives and negatives based on frequency.
     The JSON should include "transcript" and "customer_sentiment_summary" fields. "customer_sentiment_summary" should have "positives", "negatives", and "overall" fields.
     **Do not include any markdown formatting like ```json around the JSON output.**
@@ -123,7 +123,7 @@ if st.button("Analyze Video"):
             st.subheader("Transcript:")
             st.write(transcript)
 
-            st.subheader("Sentiment Analysis:")
+            st.subheader("Summary:")
 
             st.write("**Overall Sentiment:**", overall_sentiment)
 
