@@ -10,7 +10,7 @@ from vertexai.generative_models import GenerativeModel, Part, Content, Generatio
 # Streamlit UI
 st.title("Video Sentiment Analysis")
 
-video_url = st.text_input("Enter YouTube Video URL:", "gs://cloud-samples-data/video/animals.mp4") # Default video, CHANGE THIS TO YOUR GCS URL
+video_url = st.text_input("Enter YouTube Video URL:", "https://www.youtube.com/watch?v=Xt8Od-Z78Zs") # Default video, CHANGE THIS TO YOUR GCS URL
 if not video_url:
     st.warning("Please enter a YouTube or GCS video URL.")
     st.stop()
@@ -21,7 +21,7 @@ PROJECT_ID = "marine-actor-449411-t3"  # Replace with your project ID
 LOCATION = "us-central1"  # Replace with your region
 
 # Service Account Credentials
-credentials_path = 'C:\\Users\\pxs1101a\\Downloads\\Customer-Feedback-google-oauth\\Customer-Feedback-google-oauth\\SVCCredentials\\marine-actor-449411-t3-9022d9539783.json'
+credentials_path = './/SVCCredentials//marine-actor-449411-t3-9022d9539783.json'
 
 try:
     credentials = service_account.Credentials.from_service_account_file(credentials_path, scopes=["https://www.googleapis.com/auth/cloud-platform"])
