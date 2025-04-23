@@ -16,7 +16,7 @@ if not video_url:
     st.stop()
 
 # Vertex AI Configuration
-PROJECT_ID = "marine-actor-449411-t3"  # Replace with your project ID
+PROJECT_ID = "genai-sandbox-399108"  # Replace with your project ID
 LOCATION = "us-central1"  # Replace with your region
 
 # **MODIFIED: Access Service Account Credentials from Streamlit Secrets**
