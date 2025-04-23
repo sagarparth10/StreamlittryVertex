@@ -17,7 +17,7 @@ if not video_url:
 
 # Vertex AI Configuration
 PROJECT_ID = "genai-sandbox-399108"  # Replace with your project ID
-LOCATION = "sbdinc.com"  # Replace with your region
+LOCATION = "us-central1"  # Replace with your region
 
 # **MODIFIED: Access Service Account Credentials from Streamlit Secrets**
 try:
@@ -45,7 +45,7 @@ prompt_text = """
 """
 
 # Model Configuration
-model_name = "gemini-1.5-pro"  # Or "gemini-1.5-pro-video" if you have access
+model_name = "gemini-1.5-pro-002"  # Or "gemini-1.5-pro-video" if you have access
 model = GenerativeModel(model_name)
 
 generation_config = GenerationConfig(
