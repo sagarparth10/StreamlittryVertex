@@ -17,7 +17,7 @@ if not video_url:
 
 # Vertex AI Configuration
 PROJECT_ID = "genai-sandbox-399108"  # Replace with your project ID
-LOCATION = "us-central1"  # Replace with your region
+LOCATION = "sbdinc.com"  # Replace with your region
 
 # **MODIFIED: Access Service Account Credentials from Streamlit Secrets**
 try:
